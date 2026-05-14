@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palpites - Bolão da Copa</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <div id="boas-vindas">Carregando...</div> <button id="btn-sair" class="btn-secundario">Sair</button>
+        </header>
+
+        <main>
+            <div class="rodada-controles">
+                <button id="btn-rodada-ant" class="btn-seta">◀</button>
+                <h3 id="titulo-rodada">Rodada 1</h3>
+                <button id="btn-rodada-prox" class="btn-seta">▶</button>
+            </div>
+
+            <div id="container-jogos" class="grid-grupos">
+                <p>Carregando jogos...</p>
+            </div>
+
+            <div class="acoes-finais">
+                <button id="btn-salvar">Salvar Palpites</button>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="js/palpites.js"></script>
+</body>
+</html>

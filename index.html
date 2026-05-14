@@ -9,10 +9,15 @@
 <body>
 
     <div class="login-container">
-        <h1>Bolão da Copa ⚽</h1>
-        <p>Faça login para dar seus palpites!</p>
+        <h1 id="titulo-tela">Bolão da Copa ⚽</h1>
+        <p id="subtitulo-tela">Faça login para dar seus palpites!</p>
         
-        <form id="login-form">
+        <form id="auth-form">
+            <div class="input-group" id="group-nome" style="display: none;">
+                <label for="nome">Seu Nome ou Apelido</label>
+                <input type="text" id="nome" placeholder="Como quer ser chamado?">
+            </div>
+
             <div class="input-group">
                 <label for="email">E-mail</label>
                 <input type="email" id="email" placeholder="seu@email.com" required>
@@ -23,12 +28,15 @@
                 <input type="password" id="senha" placeholder="********" required>
             </div>
             
-            <button type="submit">Entrar no Bolão</button>
+            <button type="submit" id="btn-principal">Entrar no Bolão</button>
         </form>
         
-        <p class="register-link">Ainda não tem conta? <a href="#">Cadastre-se aqui</a></p>
+        <p class="register-link">
+            <span id="texto-alternar">Ainda não tem conta?</span> 
+            <a href="#" id="link-alternar">Cadastre-se aqui</a>
+        </p>
     </div>
 
-   <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
