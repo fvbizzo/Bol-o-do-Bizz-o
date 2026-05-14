@@ -1,2 +1,2 @@
-# Bol-o-do-Bizz-o
+# Bolao do Bizzao
 Bolão da Copa com amigos
