@@ -1,168 +1,40 @@
+/* --- CONFIGURAÇÕES GERAIS --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
     background-color: #f4f7f6;
+    min-height: 100vh;
+    padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #333;
 }
 
-.login-container {
-    background-color: white;
-    padding: 40px;
+.app-container {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-}
-
-.login-container h1 {
-    color: #008000; /* Verde escuro */
-    margin-bottom: 10px;
-}
-
-.login-container p {
-    margin-bottom: 30px;
-    color: #666;
-}
-
-.input-group {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #008000;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #005900;
-}
-
-.register-link {
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-.register-link a {
-    color: #008000;
-    text-decoration: none;
-    font-weight: bold;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
     padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
 }
 
-.btn-secundario {
-    background-color: #dc3545; /* Vermelho para o botão de sair */
-    width: auto;
-    padding: 8px 15px;
-}
+h1 { color: #008000; font-size: 24px; }
 
-.btn-secundario:hover {
-    background-color: #c82333;
-}
-
-.jogos-lista {
-    margin: 20px 0;
-}
-
-.jogo-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-.time {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: bold;
-}
-
-.placar-input {
-    width: 50px;
-    padding: 8px;
-    text-align: center;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.vs {
-    font-weight: bold;
-    color: #666;
-}
-
-.jogo-card.bloqueado {
-    background-color: #e9ecef;
-    opacity: 0.8;
-    border-left: 5px solid #6c757d;
-}
-
-.aviso-bloqueio {
-    font-size: 11px;
-    color: #dc3545;
-    font-weight: bold;
-    display: block;
-    margin-top: 10px;
-}
-
-.info-jogo {
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-}
-
-/* Correção do container principal */
-.app-container {
-    max-width: 900px; /* Mais largo para caber 2 grupos */
-    margin: auto; /* Centraliza no meio da tela */
-}
-
-/* Controles de Paginação */
+/* --- NAVEGAÇÃO E BOTÕES --- */
 .rodada-controles {
     display: flex;
     justify-content: space-between;
@@ -173,17 +45,23 @@ header {
     margin-bottom: 20px;
 }
 
-.btn-seta {
-    width: auto;
+button {
+    background-color: #008000;
+    color: white;
+    border: none;
     padding: 10px 20px;
-    background-color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.btn-seta:hover {
-    background-color: #000;
-}
+button:hover { background-color: #006400; }
 
-/* Grid de Grupos (2 colunas no PC, 1 no celular) */
+.btn-secundario { background-color: #6c757d; }
+.btn-seta { background-color: #333; padding: 5px 15px; }
+
+/* --- GRID DE GRUPOS --- */
 .grid-grupos {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -191,107 +69,29 @@ header {
 }
 
 @media (max-width: 768px) {
-    .grid-grupos {
-        grid-template-columns: 1fr;
-    }
+    .grid-grupos { grid-template-columns: 1fr; }
 }
 
-/* Caixinha Individual do Grupo */
 .grupo-caixa {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 15px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 10px;
 }
 
 .grupo-titulo {
     text-align: center;
     background: #008000;
     color: white;
-    padding: 5px;
+    padding: 6px;
     border-radius: 4px;
     margin-bottom: 15px;
     text-transform: uppercase;
-}
-
-/* Alinhamento Perfeito dos Times */
-.placar-area {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.time {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
     font-size: 14px;
 }
 
-.time.direita {
-    justify-content: flex-end;
-}
-
-body {
-    background-color: #f4f7f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #333;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
-}
-
-.ranking-caixa {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-#tabela-ranking {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-#tabela-ranking th {
-    text-align: left;
-    border-bottom: 2px solid #eee;
-    padding: 10px;
-    color: #666;
-}
-
-#tabela-ranking td {
-    padding: 15px 10px;
-    border-bottom: 1px solid #f9f9f9;
-}
-
-.primeiro-lugar {
-    background-color: #fff9c4; /* Destaque para o líder */
-    font-weight: bold;
-}
-
-.primeiro-lugar td:first-child {
-    font-size: 1.2em;
-}
-
-/* Menu de navegação simples */
-nav {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-nav a {
-    text-decoration: none;
-    color: #008000;
-    font-weight: bold;
-}
-
+/* --- CLASSIFICAÇÃO DE GRUPOS (POSIÇÃO) --- */
 .classificacao-palpite {
     display: flex;
     flex-direction: column;
@@ -301,14 +101,218 @@ nav a {
     padding: 10px;
     border-radius: 5px;
 }
+
 .linha-classif {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 13px;
 }
+
 .select-posicao {
     width: 80%;
-    padding: 5px;
+    padding: 4px;
     border-radius: 4px;
     border: 1px solid #ccc;
+}
+
+/* --- CARD DE JOGO E ALINHAMENTO DO PLACAR --- */
+.jogo-card {
+    background: #f9f9f9;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+}
+
+.jogo-card.bloqueado {
+    background-color: #e9ecef;
+    opacity: 0.8;
+}
+
+.info-jogo {
+    font-size: 11px;
+    color: #888;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.placar-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.time {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1; /* Divide o espaço igualmente */
+    font-size: 14px;
+}
+
+.time:first-child { justify-content: flex-end; text-align: right; }
+.time.direita { justify-content: flex-start; text-align: left; }
+
+.placar-input {
+    width: 42px;
+    height: 32px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.time img {
+    width: 24px;
+    height: auto;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    border-radius: 2px;
+}
+
+.vs { font-weight: bold; color: #bbb; font-size: 12px; }
+
+/* --- TABELA DE RANKING --- */
+#tabela-ranking {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tabela-ranking th, #tabela-ranking td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.primeiro-lugar {
+    background-color: #fff9c4;
+    font-weight: bold;
+}
+
+/* --- UTILITÁRIOS --- */
+.acoes-finais {
+    margin-top: 30px;
+    text-align: center;
+}
+
+hr { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
+
+header a:hover {
+    text-decoration: underline !important;
+    opacity: 0.8;
+}
+
+.fases-bonus ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.fases-bonus li {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+/* Container do Vídeo */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Joga para trás de tudo */
+    overflow: hidden;
+}
+
+#bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz o vídeo preencher a tela sem distorcer */
+    filter: brightness(60%); /* Escurece um pouco o vídeo para o texto aparecer melhor */
+}
+
+/* Container Pai */
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw; /* Espaço dinâmico baseado na largura da tela */
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    background-color: #f0f2f5;
+}
+
+.video-side {
+    flex: 1;
+    max-width: 300px;
+    height: 300px; /* Definir uma altura fixa ajuda a ancorar o vídeo */
+    border-radius: 15px;
+    overflow: hidden; /* Isso garante que o vídeo não saia das bordas arredondadas */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: flex; /* Centraliza o vídeo dentro da moldura */
+    align-items: center;
+    justify-content: center;
+    background-color: #000; /* Fundo preto caso o vídeo falhe */
+}
+
+.side-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ESSENCIAL: Faz o vídeo preencher todo o quadrado sem sobrar espaço branco */
+    display: block;
+}
+
+/* Caixa de Login Dinâmica */
+.login-container {
+    flex: 2; /* A caixa de login ganha mais espaço que os vídeos */
+    max-width: 450px; /* Largura máxima confortável */
+    min-width: 300px; 
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+/* Alinhamento dos Campos (Onde estava "torto") */
+.form-grupo {
+    display: flex;
+    flex-direction: column; /* Empilha um embaixo do outro */
+    gap: 15px; /* Espaçamento igual entre eles */
+    margin: 20px 0;
+}
+
+.form-grupo input {
+    width: 100%; /* Ocupa toda a largura da caixa branca */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.form-grupo button {
+    width: 100%; /* Botão alinhado com os inputs */
+    padding: 12px;
+    font-size: 18px;
+    background-color: #008000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* Responsividade para Telas Pequenas */
+@media (max-width: 900px) {
+    .video-side {
+        display: none; /* Esconde vídeos em telas pequenas para não apertar o login */
+    }
+    .login-container {
+        flex: 1;
+        max-width: 100%;
+    }
 }

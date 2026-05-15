@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regras - Bolão do Bizzão</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .regra-item { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        .regra-item h3 { color: #008000; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .pontos-tag { background: #008000; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.9em; }
+        .exemplo { background: #f9f9f9; padding: 10px; border-left: 4px solid #008000; font-style: italic; margin-top: 5px; font-size: 0.9em; }
+        .fases-bonus { background: #e8f5e9; padding: 15px; border-radius: 8px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Regras e Pontuações 📜</h1>
+            <a href="palpites.html" class="button" style="text-decoration: none; padding: 8px 15px; background: #333; color: white; border-radius: 5px;">Voltar</a>
+        </header>
+
+        <main>
+            <section class="regra-item">
+                <h3><span class="pontos-tag">10 Pontos</span> Acerto em Cheio</h3>
+                <p>Você previu exatamente o placar final da partida.</p>
+                <div class="exemplo">Jogo: Brasil 2x1 Sérvia | Seu Palpite: 2x1</div>
+            </section>
+
+            <section class="regra-item">
+                <h3><span class="pontos-tag">7 Pontos</span> Vencedor + Gols de 1 Time</h3>
+                <p>Você acertou quem ganharia (ou empate) e acertou o número de gols de uma das equipes.</p>
+                <div class="exemplo">Jogo: Brasil 2x0 Sérvia | Seu Palpite: 2x1</div>
+            </section>
+
+            <section class="regra-item">
+                <h3><span class="pontos-tag">5 Pontos</span> Vencedor ou Empate Simples</h3>
+                <p>Você acertou o resultado (quem ganhou ou se empatou), mas errou o placar exato dos dois times.</p>
+                <div class="exemplo">Jogo: Brasil 1x0 Sérvia | Seu Palpite: 2x1</div>
+            </section>
+
+            <section class="regra-item">
+                <h3><span class="pontos-tag">2 Pontos</span> Placar de Consolação</h3>
+                <p>Você errou o vencedor do jogo, mas acertou o número de gols de um dos times.</p>
+                <div class="exemplo">Jogo: Brasil 0x1 Sérvia | Seu Palpite: 2x1</div>
+            </section>
+
+            <section class="fases-bonus">
+                <h3>🚀 Multiplicadores e Bônus</h3>
+                <ul>
+                    <li><strong>Fase de Grupos e 16-avos:</strong> Pontuação normal (x1).</li>
+                    <li><strong>Oitavas e Quartas:</strong> Pontuação x1.5.</li>
+                    <li><strong>Semi e Final:</strong> Pontuação dobrada (x2).</li>
+                    <br>
+                    <li><strong>Classificação de Grupos:</strong> 10 pontos por cada seleção colocada na posição correta do 1º ao 4º.</li>
+                    <li><strong>Gabarito do Grupo:</strong> +10 pontos extras se acertar a ordem exata dos 4 times.</li>
+                </ul>
+            </section>
+
+            <section style="margin-top: 30px; font-size: 0.85em; color: #666; line-height: 1.4;">
+                <p>* Os palpites são bloqueados automaticamente assim que a partida começa.</p>
+                <p>* O ranking é atualizado manualmente pelo administrador após o término dos jogos.</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

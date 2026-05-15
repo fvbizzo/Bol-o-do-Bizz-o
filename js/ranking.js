@@ -39,7 +39,7 @@ async function carregarRanking() {
 
         querySnapshot.forEach((doc) => {
             const usuario = doc.data();
-            const SEU_EMAIL_ADMIN = "seu-email@gmail.com"; // Ajuste seu e-mail aqui
+            const SEU_EMAIL_ADMIN = "sidocha19@gmail.com"; // Ajuste seu e-mail aqui
 
             if (usuario.nome && usuario.email !== SEU_EMAIL_ADMIN) {
                 const row = `

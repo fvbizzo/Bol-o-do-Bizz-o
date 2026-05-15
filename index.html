@@ -1,40 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bolão da Copa do Bizzão</title>
+    <title>Bolão do Bizzão - Login</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="login-page">
 
-    <div class="login-container">
-        <h1 id="titulo-tela">Bolão da Copa ⚽</h1>
-        <p id="subtitulo-tela">Faça login para dar seus palpites!</p>
+    <div class="login-wrapper">
         
-        <form id="auth-form">
-            <div class="input-group" id="group-nome" style="display: none;">
-                <label for="nome">Seu Nome ou Apelido</label>
-                <input type="text" id="nome" placeholder="Como quer ser chamado?">
+        <div class="video-side">
+            <video autoplay muted loop playsinline class="side-video">
+                <source src="download.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="login-container">
+            <h1>Bolão do Bizzão ⚽</h1>
+
+            <div id="area-login">
+                <div class="form-grupo">
+                    <input type="email" id="email" placeholder="E-mail">
+                    <input type="password" id="senha" placeholder="Senha">
+                    <button id="btn-login">Entrar</button>
+                </div>
+                <p>Não tem conta? <a href="#" id="ir-para-cadastro">Cadastre-se</a></p>
             </div>
 
-            <div class="input-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" placeholder="seu@email.com" required>
+            <div id="area-cadastro" style="display: none;">
+                <div class="form-grupo">
+                    <input type="text" id="cad-nome" placeholder="Seu Nome Completo">
+                    <input type="email" id="cad-email" placeholder="E-mail">
+                    <input type="password" id="cad-senha" placeholder="Crie uma Senha">
+                    <button id="btn-cadastrar">Criar Minha Conta</button>
+                </div>
+                <p>Já tem conta? <a href="#" id="ir-para-login">Fazer Login</a></p>
             </div>
-            
-            <div class="input-group">
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" placeholder="********" required>
-            </div>
-            
-            <button type="submit" id="btn-principal">Entrar no Bolão</button>
-        </form>
-        
-        <p class="register-link">
-            <span id="texto-alternar">Ainda não tem conta?</span> 
-            <a href="#" id="link-alternar">Cadastre-se aqui</a>
-        </p>
+        </div>
+
+        <div class="video-side">
+            <video autoplay muted loop playsinline class="side-video">
+                <source src="download.mp4" type="video/mp4">
+            </video>
+        </div>
+
     </div>
 
     <script type="module" src="js/app.js"></script>
