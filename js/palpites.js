@@ -16,6 +16,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// --- TRAVA TEMPORAL ---
+const DATA_LIMITE_GRUPOS = new Date("2026-06-11T12:00:00Z"); // Ajuste para o 1º jogo da Copa
+
 let usuarioLogado = null;
 let rodadaAtual = 1;
 
@@ -70,16 +73,39 @@ async function renderizarJogos() {
 }
 
 function gerarSeletores(g) {
+    const agora = new Date();
+    const bloqueado = agora >= DATA_LIMITE_GRUPOS;
     const times = [...new Set(listaJogos.filter(j => j.grupo === g).flatMap(j => [j.timeA, j.timeB]))];
+    
     return [1,2,3,4].map(i => `<div class="linha-classif"><span>${i}º</span>
-        <select id="pos-${g}-${i}" class="select-posicao"><option value="">-</option>
-        ${times.map(t => `<option value="${t}">${t}</option>`).join('')}</select></div>`).join('');
+        <select id="pos-${g}-${i}" class="select-posicao" data-grupo="${g}" ${bloqueado ? 'disabled' : ''}>
+            <option value="">-</option>
+            ${times.map(t => `<option value="${t}">${t}</option>`).join('')}
+        </select></div>`).join('');
 }
+
+// --- TRAVA DE REPETIÇÃO ---
+document.addEventListener('change', (e) => {
+    if (e.target.classList.contains('select-posicao')) {
+        const grupo = e.target.getAttribute('data-grupo');
+        const selects = document.querySelectorAll(`.select-posicao[data-grupo="${grupo}"]`);
+        const valores = [];
+        
+        selects.forEach(s => {
+            if (s.value !== "") {
+                if (valores.includes(s.value)) {
+                    alert("Você não pode repetir a mesma seleção no grupo!");
+                    e.target.value = "";
+                } else {
+                    valores.push(s.value);
+                }
+            }
+        });
+    }
+});
 
 function card(j) {
     const jaComecou = new Date() >= new Date(j.dataInicio);
-    
-    // O dicionário de tradução
     const emojiParaSigla = { 
         "🇲🇽":"mx", "🇿🇦":"za", "🇰🇷":"kr", "🇨🇿":"cz", "🇨🇦":"ca", "🇧🇦":"ba", 
         "🇶🇦":"qa", "🇨🇭":"ch", "🇧🇷":"br", "🇲🇦":"ma", "🇭🇹":"ht", "🏴󠁧󠁢󠁳󠁣󠁴󠁿":"gb-sct", 
@@ -90,8 +116,6 @@ function card(j) {
         "🇦🇷":"ar", "🇩🇿":"dz", "🇦🇹":"at", "🇯🇴":"jo", "🇵🇹":"pt", "🇨🇩":"cd", 
         "🇺🇿":"uz", "🇨🇴":"co", "🏴󠁧󠁢󠁥󠁮󠁧󠁿":"gb-eng", "🇭🇷":"hr", "🇬🇭":"gh", "🇵🇦":"pa" 
     };
-
-    // Pegamos a sigla INDIVIDUAL para cada time
     const siglaA = emojiParaSigla[j.bandeiraA] || 'un';
     const siglaB = emojiParaSigla[j.bandeiraB] || 'un';
 
@@ -103,9 +127,7 @@ function card(j) {
                 <span>${j.timeA}</span>
                 <input type="number" id="input-${j.id}-A" class="placar-input" ${jaComecou ? 'disabled' : ''}>
             </div>
-
             <span class="vs">X</span>
-
             <div class="time direita">
                 <input type="number" id="input-${j.id}-B" class="placar-input" ${jaComecou ? 'disabled' : ''}>
                 <span>${j.timeB}</span>
@@ -117,13 +139,18 @@ function card(j) {
 
 document.getElementById('btn-salvar')?.addEventListener('click', async () => {
     const palpites = {}, posicoes = {}, agora = new Date();
+    
+    // Jogos da lista fixa
     listaJogos.forEach(j => {
         if(agora < new Date(j.dataInicio)) {
             const a = document.getElementById(`input-${j.id}-A`)?.value;
             const b = document.getElementById(`input-${j.id}-B`)?.value;
-            if(a && b) palpites[j.id] = { a:parseInt(a), b:parseInt(b) };
+            if(a !== "" && b !== "" && a !== undefined && b !== undefined) {
+                palpites[j.id] = { a:parseInt(a), b:parseInt(b) };
+            }
         }
     });
+
     // Mata-mata
     const mataSnap = await getDocs(collection(db, "jogos_matamata"));
     mataSnap.forEach(d => {
@@ -131,12 +158,20 @@ document.getElementById('btn-salvar')?.addEventListener('click', async () => {
         if(agora < new Date(j.dataInicio)) {
             const a = document.getElementById(`input-${j.id}-A`)?.value;
             const b = document.getElementById(`input-${j.id}-B`)?.value;
-            if(a && b) palpites[j.id] = { a:parseInt(a), b:parseInt(b) };
+            if(a !== "" && b !== "" && a !== undefined && b !== undefined) {
+                palpites[j.id] = { a:parseInt(a), b:parseInt(b) };
+            }
         }
     });
-    ["A","B","C","D","E","F","G","H","I","J","K","L"].forEach(g => {
-        posicoes[g] = [1,2,3,4].map(i => document.getElementById(`pos-${g}-${i}`)?.value || "");
-    });
+
+    // Posições de Grupo (Apenas se ainda não passou da data limite)
+    if(agora < DATA_LIMITE_GRUPOS) {
+        ["A","B","C","D","E","F","G","H","I","J","K","L"].forEach(g => {
+            const cols = [1,2,3,4].map(i => document.getElementById(`pos-${g}-${i}`)?.value || "");
+            if(cols.some(c => c !== "")) posicoes[g] = cols;
+        });
+    }
+
     await setDoc(doc(db, "palpites", usuarioLogado.uid), { palpites, posicoes }, { merge: true });
     alert("Salvo!");
 });
@@ -152,7 +187,9 @@ async function carregarPalpites() {
             }
         }
         if(d.posicoes) for(const g in d.posicoes) {
-            d.posicoes[g].forEach((t, i) => { if(document.getElementById(`pos-${g}-${i+1}`)) document.getElementById(`pos-${g}-${i+1}`).value = t; });
+            d.posicoes[g].forEach((t, i) => { 
+                if(document.getElementById(`pos-${g}-${i+1}`)) document.getElementById(`pos-${g}-${i+1}`).value = t; 
+            });
         }
     }
 }
