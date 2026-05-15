@@ -244,3 +244,71 @@ body {
     color: #333;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
 }
+
+.ranking-caixa {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#tabela-ranking {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#tabela-ranking th {
+    text-align: left;
+    border-bottom: 2px solid #eee;
+    padding: 10px;
+    color: #666;
+}
+
+#tabela-ranking td {
+    padding: 15px 10px;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.primeiro-lugar {
+    background-color: #fff9c4; /* Destaque para o líder */
+    font-weight: bold;
+}
+
+.primeiro-lugar td:first-child {
+    font-size: 1.2em;
+}
+
+/* Menu de navegação simples */
+nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #008000;
+    font-weight: bold;
+}
+
+.classificacao-palpite {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+    background: #f0f7f0;
+    padding: 10px;
+    border-radius: 5px;
+}
+.linha-classif {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.select-posicao {
+    width: 80%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}

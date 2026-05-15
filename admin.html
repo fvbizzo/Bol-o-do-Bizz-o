@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Bolão do Bizzão</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Painel de Resultados</h1>
+            <button id="btn-voltar">Voltar</button>
+        </header>
+
+        <main>
+            <div class="rodada-controles">
+                <button id="btn-rodada-ant" class="btn-seta">◀</button>
+                <h3 id="titulo-rodada">Rodada 1</h3>
+                <button id="btn-rodada-prox" class="btn-seta">▶</button>
+            </div>
+
+            <div id="container-admin" class="grid-grupos">
+                </div>
+            <hr>
+                <h2 style="text-align: center; margin-top: 30px;">Classificação Oficial dos Grupos</h2>
+                <div id="container-admin-grupos" class="grid-grupos">
+                </div>
+            <hr>
+            <h2>Criar Jogos de Mata-Mata</h2>
+            <div class="grupo-caixa">
+                <select id="mata-fase">
+                    <option value="16avos">16-avos de Final (x1)</option>
+                    <option value="oitavas">Oitavas de Final (x1.5)</option>
+                    <option value="quartas">Quartas de Final (x1.5)</option>
+                    <option value="semi">Semifinal (x2)</option>
+                    <option value="final">Grande Final (x2)</option>
+                </select>
+                <input type="text" id="mata-timeA" placeholder="Time A">
+                <input type="text" id="mata-timeB" placeholder="Time B">
+                <input type="datetime-local" id="mata-data">
+                <button id="btn-criar-jogo">Criar Partida</button>
+            </div>
+            <div class="acoes-finais">
+                <button id="btn-processar-ranking" style="background-color: #d9534f;">Calcular Ranking Geral</button>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="js/admin.js"></script>
+</body>
+</html>
